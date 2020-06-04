@@ -1,0 +1,1 @@
+docker build --tag chatbot-telegram:0.1 . && docker run -it chatbot-telegram:0.1

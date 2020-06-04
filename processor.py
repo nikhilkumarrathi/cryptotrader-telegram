@@ -47,7 +47,7 @@ def process_message(message: DotMap, use_executor=True):
 
     if curr_command in cm.commands:
         access_list = cm.accessManagement[curr_command] if curr_command in cm.accessManagement else []
-        access_granted = (author.lower() in access_list or author.lower() == accessControl.adminName)
+        access_granted = (author.lower() in access_list or author.lower() == accessControl.adminUserId)
 
         if not access_granted:
             message.text = '/' + cm.accessdenied + ' ' + message.text

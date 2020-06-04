@@ -542,22 +542,24 @@ examples = {
 }
 
 # If a command is not specified below, which means it has access to only Admin `adminUserId`
+publicMembers = accessControl.groups.public
+privateMembers = accessControl.groups.private
 accessManagement: Dict[str, List] = {
-    'echo': accessControl.public,
-    'bal': accessControl.private,
-    'hot': accessControl.public,
-    'now': accessControl.public,
-    'slinfo': accessControl.private,
-    'sellxtest': accessControl.private,
-    'buyxtest': accessControl.private,
-    'snapshotbal': accessControl.private,
-    'ta': accessControl.public,
-    'hints': accessControl.public,
-    'candles': accessControl.public,
-    'mine': accessControl.public,
-    'accessdenied': accessControl.public,
-    'schd': accessControl.private,
-    'schdinfo': accessControl.private
+    'echo': publicMembers,
+    'bal': privateMembers,
+    'hot': publicMembers,
+    'now': publicMembers,
+    'slinfo': privateMembers,
+    'sellxtest': privateMembers,
+    'buyxtest': privateMembers,
+    'snapshotbal': privateMembers,
+    'ta': publicMembers,
+    'hints': publicMembers,
+    'candles': publicMembers,
+    'mine': publicMembers,
+    'accessdenied': publicMembers,
+    'schd': privateMembers,
+    'schdinfo': privateMembers
 }
 
 

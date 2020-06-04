@@ -66,7 +66,7 @@ def process_shell_command(text):
             local_message = DotMap()
             local_message.chat.id = accessControl.adminChatId
             local_message.text = "/" + text
-            local_message.chat.username = accessControl.adminName
+            local_message.chat.username = accessControl.adminUserId
             local_message.source = "terminal"
             processor.process_message(local_message, use_executor=True)
 
