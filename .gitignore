@@ -3,3 +3,5 @@ db.json
 .idea
 __pycache__
 charts/**
+.mypy_cache
+.vscode

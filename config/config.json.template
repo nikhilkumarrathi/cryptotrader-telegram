@@ -2,6 +2,7 @@
   "telegramApiKey": "----",
   "binanceApiKey": "----",
   "binanceApiSecret": "----",
+  "adminUserId": "--userid--"
   "accessControl": {
     "groups": {
     "private": [
@@ -14,6 +15,5 @@
     ]
   },
     "adminChatId": "--some digits--",
-    "adminName": "--userid--"
   }
 }

@@ -390,7 +390,7 @@ def cm_balance_checkpoint(task):
 @wrapper
 def cm_my_commands(task):
     author = task.message.chat.username.lower()
-    messages = list(filter(lambda x: author == accessControl.adminName or (accessManagement[x] and author in accessManagement[x]),
+    messages = list(filter(lambda x: author == accessControl.adminUserId or (accessManagement[x] and author in accessManagement[x]),
                            accessManagement.keys()))
     messages.remove('accessdenied')
     messages.remove('mine')
@@ -541,7 +541,7 @@ examples = {
     "now": ""
 }
 
-# If a command is not specified below, which means it has access to only Admin `adminName`
+# If a command is not specified below, which means it has access to only Admin `adminUserId`
 accessManagement: Dict[str, List] = {
     'echo': accessControl.public,
     'bal': accessControl.private,
