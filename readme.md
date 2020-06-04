@@ -54,8 +54,8 @@ You can create a named group under accessContro.groups node and provide a list o
 
 
 # Screenshots
-<img src="Screenshots/1.jpeg" width="300">
-<img src="Screenshots/2.jpeg" width="300">
+<img src="./screenshots/1.jpeg" width="300">
+<img src="./screenshots/2.jpeg" width="300">
 
 
 
