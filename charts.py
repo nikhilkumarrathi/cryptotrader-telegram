@@ -22,7 +22,7 @@ chart_tail_count = 100
 ta_hints_bars = 4
 figure_size = (11, 8)
 
-class Methods:
+class ChartHelper:
     def __init__(self):
         self.lowRsi = 30
         self.highRsi = 70
@@ -52,7 +52,7 @@ class Methods:
 
 def macd_x_over(df):
     macd = TA.MACD(df)
-    methods = Methods()
+    methods = ChartHelper()
     macdCrossoverDF = (macd['MACD'] - macd['SIGNAL']).rolling(2).apply(methods.polarity_shift_macd, raw=True).shift(-1)
     crossoversSeriesGreen = macdCrossoverDF.loc[lambda x: x == 1]
     crossoversSeriesRed = macdCrossoverDF.loc[lambda x: x == -1]
@@ -80,7 +80,7 @@ def macd_x_over(df):
     return {'signal' : buysell, 'time': lastTime, 'info': signal_info, 'plot': plottable}
 
 def rsi(df):
-    methods = Methods()
+    methods = ChartHelper()
     rsi = TA.RSI(df)
     lastRSI = app.floor(sum(rsi.tail(3).values) / 3, 1)
 
@@ -88,12 +88,14 @@ def rsi(df):
         if ax:
             stock_rsi = TA.STOCHRSI(df).multiply(100)
             rsiPoints = rsi.tail(rsi.shape[0] - 10).apply(methods.polarity_shift_rsi)
-            rsiPointsGreen = rsiPoints.where(lambda x: x == 1).shift(0).dropna()
-            rsiPointsRed = rsiPoints.where(lambda x: x == -1).shift(0).dropna()
+            rsiPointsGreen = rsiPoints.where(lambda x: x == 1).shift(0).dropna().tail(2)
+            rsiPointsRed = rsiPoints.where(lambda x: x == -1).shift(0).dropna().tail(2)
             pd.concat([rsi, stock_rsi], axis=1).tail(chart_tail_count).plot(figsize=figure_size, ax=ax)
             try:
-                ax.scatter(rsiPointsRed.index, rsi[rsiPointsRed.index].values, s=100, c='red')
-                ax.scatter(rsiPointsGreen.index, rsi[rsiPointsGreen.index].values, s=100, c='green')
+                if rsiPointsRed.shape[0] > 0:
+                    ax.scatter(rsiPointsRed.index, rsi[rsiPointsRed.index].values, s=100, c='red')
+                if rsiPointsGreen.shape[0] > 0:
+                    ax.scatter(rsiPointsGreen.index, rsi[rsiPointsGreen.index].values, s=100, c='green')
             except Exception as e1:
                 log.exception(e1)
 
@@ -118,7 +120,7 @@ def bb(df):
     return {'signal' : signal , 'info':info, 'plot': plottable}
 
 def ta(asset, timeframe, count, fig, ax):
-    methods = Methods()
+    methods = ChartHelper()
     matplotlib.use('agg')
     matplotlib.pyplot.switch_backend('Agg')
     plt.style.use(theme)
@@ -180,7 +182,7 @@ def getAdxIntensity(adx):
 
 
 def candles(asset, timeframe, count) -> Tuple[str, str]:
-    methods = Methods()
+    methods = ChartHelper()
     log.debug("charting: %s : %s x %s", asset, timeframe, count)
     matplotlib.use('agg')
     matplotlib.pyplot.switch_backend('Agg')
