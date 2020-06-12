@@ -1,6 +1,6 @@
 This is an unplanned tool that turned into something nice and so useful. I was playing with Python, and Binance API when  I realized that there are many things that I check so frequently, wouldn't it be nice to just fire a command from the Phone and get an answer within seconds? Or what about scheduling something to run over and over without having to remember it.
 
-This tool is a Telegram bot, that supports various Tradind commands by authorized handles.
+This tool is a Telegram bot, that supports various Trading commands by authorized handles.
 The Backend APIs are provided by Binance which supports quite a lot of features for Cryptocurrency Trading.
 
 # Prerequisites of this Tool
