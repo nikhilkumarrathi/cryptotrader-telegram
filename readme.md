@@ -35,6 +35,10 @@ You can create a named group under accessContro.groups node and provide a list o
     ...
 ```
 
+**Configure adminChatId for CLI messages**
+Telegram Messages needs a Chat ID to respond to. The Chat ID can be known when a message is sent from Telegram.
+Look into the Logs and find the _from.id_. Use this to configure _adminChatId_ configuration.
+
 # Features Overview
 - Provide many useful features that a trader might be interested in without having to check it manually 
 - Provides simple commands which can be used through telegram bot, check the Commands in Next section
@@ -45,18 +49,15 @@ You can create a named group under accessContro.groups node and provide a list o
    - Bollinger Bands
    - EMA, EVWMA Crossovers
    - ADX Trend Strength Indicator
-   - Canle Stick Charts and Dragonfly Doji Marks
+   - Canlde Stick Charts and Dragonfly Doji Marks
 - Provide Account management on Binance
 - Schedule a Command that runs periodically
 - Place Buy / Sell Order using simple commands
 - Easily manage Stoploss and Trailing Stoploss with a percentage Threshold
 
-
-
 # Screenshots
 <img src="./screenshots/1.jpeg" width="300">
 <img src="./screenshots/2.jpeg" width="300">
-
 
 
 # Commands
