@@ -1,1 +1,3 @@
-docker build --tag chatbot-telegram:0.1 . && docker run -it chatbot-telegram:0.1
+# Docker Script
+tag=chatbot-telegram:0.1
+docker build --tag $(echo tag) . && docker run -it $(echo tag)

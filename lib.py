@@ -191,6 +191,7 @@ class App:
                             del message['chat'].first_name
                         if message['chat'].last_name:
                             del message['chat'].last_name
+                        log.info("Message from Telegram: %s",message.toDict())
                         response.append(message)
                     else:
                         response.append(DotMap({'update_id': x['update_id']}))

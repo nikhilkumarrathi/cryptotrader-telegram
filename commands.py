@@ -37,9 +37,13 @@ def wrapper(fn):
         try:
             msg = fn(task)
             if msg and len(msg) > 0 and task.message.chat.id:
-                app.send_msg(msg, task.message.chat.id)
-                if task.message.source == 'terminal':
-                    log.info("\n%s", msg)
+                if not isinstance(task.message.chat.id, int) \
+                        or ( isinstance(task.message.chat.id, str) and not task.message.chat.id.isnumeric()):
+                    log.warn("Please set the adminChatID");
+                else:
+                    app.send_msg(msg, task.message.chat.id)
+                    if task.message.source == 'terminal':
+                        log.info("\n%s", msg)
             elif task.message.chat.id:
                 pass
                 # app.notify_action(task.message.chat.id)
