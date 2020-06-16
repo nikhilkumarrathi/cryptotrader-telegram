@@ -23,8 +23,11 @@ Please fill the following details in the config file.
   "telegramApiKey": "----",
   "binanceApiKey": "----",
   "binanceApiSecret": "----",
-  "adminUserId": "----"
+  "adminUserId": "--Telegram handle excluding @--"
+  "adminChatId": "--Telegram Number ID ---"
 ```
+https://bigone.zendesk.com/hc/en-us/articles/360008014894-How-to-get-the-Telegram-user-ID-
+
 
 You can also provide some other UserIDs to give access to other accounts for certain Commands.
 You can create a named group under accessContro.groups node and provide a list of telegram userIDs. 
