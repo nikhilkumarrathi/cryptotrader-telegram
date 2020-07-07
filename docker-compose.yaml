@@ -1,0 +1,9 @@
+version: "2.1"
+
+services:
+
+  cryptotrader-telegram:
+    container_name: cryptotrader-telegram
+    build:
+      context: .
+      dockerfile: Dockerfile

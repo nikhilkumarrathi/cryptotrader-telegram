@@ -29,14 +29,11 @@ def check_loggers():
 
 def wrapper(fn):
     def wrapped(task):
-        current_name = threading.current_thread().getName()
-        if 'ThreadPool' in current_name:
-            threading.current_thread().setName('Command_' + current_name[-3:])
-
         start = time.time_ns()
         try:
             msg = fn(task)
             if msg and len(msg) > 0 and task.message.chat.id:
+                log.info("chat id %s",task.message.chat.id)
                 if not isinstance(task.message.chat.id, int) \
                         or ( isinstance(task.message.chat.id, str) and not task.message.chat.id.isnumeric()):
                     log.warn("Please set the adminChatID");

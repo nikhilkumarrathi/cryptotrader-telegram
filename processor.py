@@ -11,7 +11,7 @@ from access import accessControl
 import log
 
 # Remember to only use single threaded, as we are using global variable for telegram chat_id
-executor = ThreadPoolExecutor(max_workers=3)
+executor = ThreadPoolExecutor(max_workers=3,thread_name_prefix="task")
 
 
 def run_scheduler():
@@ -21,7 +21,7 @@ def run_scheduler():
         time.sleep(1)
 
 
-schedulerExecutor = ThreadPoolExecutor(max_workers=1)
+schedulerExecutor = ThreadPoolExecutor(max_workers=1,thread_name_prefix="schedule")
 schedulerExecutor.submit(run_scheduler)
 
 

@@ -1,5 +1,6 @@
 import threading
 import time
+from time import sleep
 
 from dotmap import DotMap
 
@@ -10,6 +11,7 @@ from db import Const
 from db import db
 from lib import app
 from access import accessControl
+import sys
 
 
 def telegram_poller():
@@ -76,8 +78,13 @@ try:
     log.info("running default commands")
     for x in default_commands:
         process_shell_command(x)
-    while True:
-        inp = input("\n")
-        process_shell_command(inp)
+
+    if sys.stdin.isatty():
+        print("reading from Terminal:")
+        while True:
+            inp = input("\n")
+            process_shell_command(inp)
+    else:
+        sleep(999999999)
 except Exception as e:
     log.exception(e)
