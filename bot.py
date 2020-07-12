@@ -51,8 +51,10 @@ def telegram_poller():
 processor.executor.submit(telegram_poller)
 
 default_commands = [
-    "schd 120 hot 1m 10 1",
-    "schd 600 macd ada,trx,icx,wan,aion",
+    "symboladd ada trx ltc xlm icx eth",
+    "hot 1d 7 10",
+    "schd "+str(60*60*6)+" hot 1d 7 10", #every 6 hours
+    "schd "+str(60*30)+" macd all 4h 1000",
     "schdinfo"
 ]
 
@@ -85,6 +87,6 @@ try:
             inp = input("\n")
             process_shell_command(inp)
     else:
-        sleep(999999999)
+        sleep(999999999) # dumb way to sleep so long
 except Exception as e:
     log.exception(e)

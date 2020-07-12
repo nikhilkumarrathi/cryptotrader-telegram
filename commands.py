@@ -148,10 +148,13 @@ def cm_price_alerts(task):
         up = list(filter(lambda y: y[0] == '⬆', messages))
         down = list(filter(lambda y: y[0] != '⬆', messages))
 
-        up.append('- ' * 10)
-        up.extend(down)
+        result = ['- ' * 10,f'Coins Activity: {params[0]} x {params[1]}']
+        result.append('- ' * 10)
+        result.extend(up)
+        result.append('- ' * 10)
+        result.extend(down)
 
-        return "\n".join(up)
+        return "\n".join(result)
 
 
 @wrapper
@@ -478,6 +481,8 @@ def cm_macd_show(task):
 def cm_macd(task):
     params = overlap(task.params, [None, '1h', 1000], [str, str, int])
     log.debug(params)
+    if(params[0].lower() == "all"):
+        params[0] = ",".join(db.config(Const.SYMBOLS, []))
     messages = []
     for symbol in params[0].split(","):
         symbol_with_currency = app.symbol_with_currency(symbol)
