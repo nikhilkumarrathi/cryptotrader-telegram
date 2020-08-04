@@ -197,8 +197,12 @@ def candles(asset, timeframe, count) -> Tuple[str, str]:
     filename = 'charts/' + asset + "_candled_" + str(int(round(time.time() * 1000))) + '.png'
     fig.savefig(filename)
 
-    plx.plot(range(0, len(klines)), [float(x[4]) for x in klines], rows=25, cols=90)
-    plx.show()
+
+    try:
+        plx.plot(range(0, len(klines)), [float(x[4]) for x in klines], rows=25, cols=90)
+        plx.show()
+    except:
+        pass
 
     return filename, "\n".join(identify_candles(klines))
 

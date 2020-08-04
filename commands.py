@@ -68,7 +68,6 @@ def overlap(source, target, types, functions=None):
 def cm_echo(task):
     return 'Alive!'
 
-
 def util_balance_hash(balances: Dict[str, float]):
     sorted_keys = sorted(balances.keys())
     return "".join([x + str(app.floor(balances[x], 3)) for x in sorted_keys if balances[x] > 0.005])
